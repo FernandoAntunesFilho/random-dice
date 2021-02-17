@@ -1,56 +1,155 @@
-import React from 'react';
+import React from "react";
+import "./PlayDice.css";
 
 class PlayDice extends React.Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.state = {
-      dado1: 0,
-      dado2: 0,
-    }
+      qtdDados: 1,
+      valoresDados: [],
+    };
 
     this.getRandom = this.getRandom.bind(this);
     this.rollThedice = this.rollThedice.bind(this);
   }
 
+  setQtdDados(valor) {
+    this.setState({
+      qtdDados: parseInt(valor),
+    });
+  }
+
   getRandom() {
     return Math.floor(Math.random() * 7);
-  };
+  }
 
-  rollThedice(dice) {
-    if (dice === 'dado1') {
-      let newNumber = this.getRandom();
+  rollThedice() {
+    const { qtdDados } = this.state;
+    let newNumber = 0;
+    const arrayDados = [];
+    for (let i = 1; i <= qtdDados; i++) {
+      newNumber = this.getRandom();
       if (newNumber === 0) {
         newNumber = 1;
       }
-      this.setState({
-        dado1: this.getRandom(),
-      })
+      arrayDados.push(newNumber);
+    }
+    this.setState({
+      valoresDados: arrayDados,
+    })
+  }
+
+  doTheSwith(dado) {
+    switch (dado) {
+      case 1:
+        return (
+          <div className="dice first-face">
+            <span className="dot"> </span>
+          </div>
+        );
+      case 2:
+        return (
+          <div className="dice second-face">
+            <span className="dot"> </span>
+            <span className="dot"> </span>
+          </div>
+        );
+      case 3:
+        return (
+          <div className="dice third-face">
+            <span className="dot"></span>
+            <span className="dot"></span>
+            <span className="dot"></span>
+          </div>
+        );
+      case 4:
+        return (
+          <div className="dice fourth-face">
+            <div className="column">
+              <span className="dot"></span>
+              <span className="dot"></span>
+            </div>
+            <div className="column">
+              <span className="dot"></span>
+              <span className="dot"></span>
+            </div>
+          </div>
+        );
+      case 5:
+        return (
+          <div className="dice fifth-face">
+            <div className="column">
+              <span className="dot"></span>
+              <span className="dot"></span>
+            </div>
+            <div className="column">
+              <span className="dot"></span>
+            </div>
+            <div className="column">
+              <span className="dot"></span>
+              <span className="dot"></span>
+            </div>
+          </div>
+        );
+      case 6:
+        return (
+          <div className="dice fourth-face">
+            <div className="column">
+              <span className="dot"></span>
+              <span className="dot"></span>
+              <span className="dot"></span>
+            </div>
+            <div className="column">
+              <span className="dot"></span>
+              <span className="dot"></span>
+              <span className="dot"></span>
+            </div>
+          </div>
+        );
+      default:
+        return (
+          <div className="dice first-face">
+            <span className="dot"> </span>
+          </div>
+        );
     }
   }
 
+  showDice(dado) {
+    return this.doTheSwith(dado);
+  }
+
   render() {
-    const {dado1, dado2} = this.state;
+    const { valoresDados, qtdDados } = this.state;
+    const dados = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     return (
       <div>
-        <div className='container-buttons'>
-          <button
-            value='dado1'
-            type='button'
-            onClick={(event) => this.rollThedice(event.target.value)}
+        <label>
+          Quantos dados?
+          <select
+            value={qtdDados}
+            onChange={(event) => this.setQtdDados(event.target.value)}
           >
-            Joga Dado 1
+            {dados.map((dado) => (
+              <option key={dado}>{dado}</option>
+            ))}
+          </select>
+        </label>
+        <div className="container-dice">
+          {valoresDados.map((numero, index) => (
+            <div key={ index }>{this.showDice(numero)}</div>
+          ))}
+        </div>
+        <div className="container-button-both">
+          <button
+            type="button"
+            onClick={() => this.rollThedice()}
+          >
+            Jogar 🎲!!!
           </button>
-          <button value='dado2' type='button'>Joga Dado 2</button>
-        </div>
-        <div className='container-dice'>
-          <span>{ dado1 }</span>
-          <span>{ dado2 }</span>
-        </div>
-        <div className='container-button-both'>
-          <button type='button'>Joga Ambos</button>
         </div>
       </div>
-    )
+    );
   }
 }
 

@@ -1,0 +1,82 @@
+/* Este CSS foi feito com base no site:
+https://medium.com/better-programming/creating-dice-in-flexbox-in-css-a02a5d85e516 */
+
+.container-dice {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.dice {
+  margin: 2px;
+  padding: 4px;
+  background-color: tomato;
+  width: 104px;
+  height: 104px;
+  border-radius: 10%;
+  border: 1px solid black;
+}
+
+.dot {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.first-face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.second-face {
+  display: flex;
+  justify-content: space-between;
+}
+
+.second-face .dot:nth-of-type(2) {
+  align-self: flex-end;
+}
+
+.third-face {
+  display: flex;
+  justify-content: space-between;
+}
+
+.third-face .dot:nth-of-type(3) {
+  align-self: flex-end;
+}
+
+.third-face .dot:nth-of-type(2) {
+  align-self: center;
+}
+
+.fourth-face {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fourth-face .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fifth-face {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fifth-face .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fifth-face .column:nth-of-type(2) {
+  justify-content: center;
+}
