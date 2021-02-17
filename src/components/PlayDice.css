@@ -1,6 +1,20 @@
 /* Este CSS foi feito com base no site:
 https://medium.com/better-programming/creating-dice-in-flexbox-in-css-a02a5d85e516 */
 
+.select-container {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.select-label {
+  font-size: x-large;
+}
+
+.select-width {
+  width: 85%;
+}
+
 .container-dice {
   display: flex;
   flex-direction: row;

@@ -1,5 +1,6 @@
 import React from "react";
 import "./PlayDice.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class PlayDice extends React.Component {
   constructor() {
@@ -36,7 +37,7 @@ class PlayDice extends React.Component {
     }
     this.setState({
       valoresDados: arrayDados,
-    })
+    });
   }
 
   doTheSwith(dado) {
@@ -124,24 +125,29 @@ class PlayDice extends React.Component {
     const dados = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     return (
       <div>
-        <label>
-          Quantos dados?
-          <select
-            value={qtdDados}
-            onChange={(event) => this.setQtdDados(event.target.value)}
-          >
-            {dados.map((dado) => (
-              <option key={dado}>{dado}</option>
-            ))}
-          </select>
-        </label>
+        <div className='select-container'>
+          <label className='select-label'>
+            Quantos dados?
+            <select
+              className="form-select form-select-lg mb-3 select-width"
+              aria-label=".form-select-lg example"
+              value={qtdDados}
+              onChange={(event) => this.setQtdDados(event.target.value)}
+            >
+              {dados.map((dado) => (
+                <option key={dado}>{dado}</option>
+              ))}
+            </select>
+          </label>
+        </div>
         <div className="container-dice">
           {valoresDados.map((numero, index) => (
-            <div key={ index }>{this.showDice(numero)}</div>
+            <div key={index}>{this.showDice(numero)}</div>
           ))}
         </div>
         <div className="container-button-both">
           <button
+            className="btn btn-success"
             type="button"
             onClick={() => this.rollThedice()}
           >
