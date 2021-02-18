@@ -1,4 +1,5 @@
 import PlayDice from './components/PlayDice'
+import './App.css';
 
 function App() {
   return (

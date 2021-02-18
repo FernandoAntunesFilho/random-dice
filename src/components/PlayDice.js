@@ -145,9 +145,9 @@ class PlayDice extends React.Component {
             <div key={index}>{this.showDice(numero)}</div>
           ))}
         </div>
-        <div className="container-button-both">
+        <div className="container-button-play">
           <button
-            className="btn btn-success"
+            className="btn btn-success btn-lg"
             type="button"
             onClick={() => this.rollThedice()}
           >

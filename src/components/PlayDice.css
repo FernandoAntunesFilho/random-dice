@@ -15,6 +15,17 @@ https://medium.com/better-programming/creating-dice-in-flexbox-in-css-a02a5d85e5
   width: 85%;
 }
 
+.container-button-play {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+.btn-play {
+  width: 40%;
+  height: 70px;
+}
+
 .container-dice {
   display: flex;
   flex-direction: row;
